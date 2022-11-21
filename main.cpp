@@ -8,8 +8,8 @@ int getN() {
     int val = 0;
     const char* oldS = string;
 
-    if ('0' <= *string && '9' >= *string) {
-        val = *string - '0';
+    while ('0' <= *string && '9' >= *string) {
+        val = val * 10 + (*string - '0');
         string++;
     }
 
