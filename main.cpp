@@ -18,8 +18,28 @@ int getN() {
     return val;
 }
 
+int getE() {
+    int val1 = 0;
+    val1 = getN();
+
+    if (!(*string == '+' || *string == '-')) return val1;
+
+    char oper = *string;
+    string++;
+
+    int val2 = getN();
+
+    if (oper == '+') {
+        val1 += val2;
+    } else {
+        val1 -= val2;
+    }
+
+    return val1;
+}
+
 int getG() {
-    int val = getN();
+    int val = getE();
 
     assert(*string == '\0');
 
