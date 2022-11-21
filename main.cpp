@@ -4,6 +4,12 @@
 
 char* string = nullptr;
 
+int getN();
+int getP();
+int getT();
+int getE();
+int getG();
+
 int getN() {
     int val = 0;
     const char* oldS = string;
@@ -18,8 +24,23 @@ int getN() {
     return val;
 }
 
+int getP() {
+    int val = 0;
+    if (*string == '(') {
+        string++;
+        val = getE();
+        assert(*string == ')');
+        string++;
+    } else {
+        return getN();
+    }
+
+    return val;
+
+}
+
 int getT() {
-    int val1 = getN();
+    int val1 = getP();
     if (!(*string == '*' || *string == '/')) return val1;
 
     int val2 = 0;
@@ -27,7 +48,7 @@ int getT() {
         char oper = *string;
         string++;
 
-        val2 = getN();
+        val2 = getP();
 
         if (oper == '*') {
             val1 *= val2;
