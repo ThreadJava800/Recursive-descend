@@ -18,9 +18,29 @@ int getN() {
     return val;
 }
 
+int getT() {
+    int val1 = getN();
+    if (!(*string == '*' || *string == '/')) return val1;
+
+    int val2 = 0;
+    while (*string == '*' || *string == '/') {
+        char oper = *string;
+        string++;
+
+        val2 = getN();
+
+        if (oper == '*') {
+            val1 *= val2;
+        } else {
+            val1 /= val2;
+        }
+    }
+
+    return val1;
+}
+
 int getE() {
-    int val1 = 0;
-    val1 = getN();
+    int val1 = getT();
     if (!(*string == '+' || *string == '-')) return val1;
 
     int val2 = 0;
@@ -28,7 +48,7 @@ int getE() {
         char oper = *string;
         string++;
 
-        int val2 = getN();
+        int val2 = getT();
 
         if (oper == '+') {
             val1 += val2;
